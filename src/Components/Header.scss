@@ -1,0 +1,21 @@
+.header{
+    display: flex;
+    width:100%;
+    background:#990100;
+    justify-content: space-around;
+    align-items: center;
+
+    &__logo{
+        &--img{
+            width:24rem;
+            height:auto;
+        }
+    }
+
+    &__intro{
+        &--desc{
+            color:#fff;
+            font-size:3rem;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.gradient{
+    background:#fff;
+    display:flex;
+    width:70%;
+    margin:0 auto;
+    height:30rem;
+
+    &__container{
+        width:60%;
+        height:100%;
+    }
+    &__controls{
+        height:100%;
+        width:40%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        transition: width .2s;
+        padding:2rem;
+        &--list{
+            list-style-type: none;
+            width:100%;
+            & li{
+                margin: 2rem 0;
+                padding:1rem;
+                & code{
+                    font-size:1.4rem;
+                    text-align:left;
+                }
+            }
+        }
+        &--btn{
+            border:none;
+            background: #ef5350;
+            padding:1rem 3rem;
+            color:#fff;
+            cursor:pointer;
+            text-transform: uppercase;
+            transition: transform .2s;
+            &:hover{
+                transform:translateY(-2px)
+            }
+            &:active{
+                transform: translateY(0)
+            }
+        }
+    }
+    
+
+}
