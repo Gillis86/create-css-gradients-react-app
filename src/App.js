@@ -171,11 +171,12 @@ hideResult(){
 }
   render() {
     let palettesRendering = null;
-    let result = null
+    let result = null;
+    let ScrollBtn = null;
     if(this.state.palettes.length !== 0){
       const palettes = this.state.palettes
       palettesRendering = (
-        <div className="palettes">
+        <div ref="palettes" className="palettes">
         <div className="palettes__heading">
           <h3>Select your colors from the palettes and get the result</h3>
         </div>
@@ -195,6 +196,25 @@ hideResult(){
         </button>
         </div>
       );
+      ScrollBtn = (
+        <div className="scroll"
+        onClick={
+          ()=> {
+            console.log(this.refs.palettes)
+            const palettesDOMRef = this.refs.palettes
+            const pos = palettesDOMRef.offsetTop
+            window.scrollTo({
+            top:pos,
+            behavior:'smooth'
+          })
+        }
+        }
+        >
+          <i className="fas fa-arrow-down scroll__icon fa-3x"></i>
+          <span>start selecting colors</span>
+
+        </div>
+      )
     }
 
     if(this.state.showResult){
@@ -227,6 +247,7 @@ hideResult(){
         }}
         />
         <main className="main">
+        {ScrollBtn}
         {palettesRendering}
         {result}
         </main>
