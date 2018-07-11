@@ -5,6 +5,10 @@
     margin:0 auto;
     height:30rem;
 
+    &__edit{
+
+    }
+
     &__container{
         width:60%;
         height:100%;
@@ -17,6 +21,13 @@
         align-items: flex-start;
         transition: width .2s;
         padding:2rem;
+        position:relative;
+
+        &--edit{
+            position:absolute;
+            top:7%;
+            right:3%;
+        }
         &--list{
             list-style-type: none;
             width:100%;

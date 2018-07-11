@@ -1,32 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Palette.scss';
 
 
 
 
-class Palette extends Component {
+function Palette(props) {
   
-
-  render() {
     const style = {
-        color: this.props.colors[this.props.colors.length - 1]
+        color: props.colors[props.colors.length - 1]
     }
     return (
         <div className="palette">
             <h3 style={style} className="palette__label">
-            {this.props.label}
+            {props.label}
                 <span onClick={
-                    () =>this.props.removePalette(this.props.label)
+                    () =>props.removePalette(props.label)
                 }>
                 <i style={style} className="fas fa-trash-alt fa-2x"></i>
                 </span>
             </h3>
             <ul className="palette__list">
                 {
-                    this.props.colors.map(color =>{
+                    props.colors.map(color =>{
                         const style = {
                             backgroundColor:color,
-                            color:this.props.label === 'blackAndWhite' ? 'grey' : ''
+                            color:props.label === 'blackAndWhite' ? 'grey' : ''
                             
                         }
 
@@ -38,7 +36,7 @@ class Palette extends Component {
                              event.target.style.zIndex = '9999'
                              event.target.childNodes[1].style.visibility = 'visible'  
                              event.target.childNodes[1].style.opacity = '1' 
-                             this.props.setColor({label:this.props.label,color:color})
+                             props.setColor({label:props.label,color:color})
                             
                             }}
                          key={color}>
@@ -51,7 +49,7 @@ class Palette extends Component {
                              event.currentTarget.parentElement.style.zIndex = ''
                              event.currentTarget.style.opacity = '' 
                              event.currentTarget.style.visibility = ''   
-                             this.props.removeColor(color)
+                             props.removeColor(color)
                          }}>
                          <i className="fas fa-trash-alt fa-1x"></i>
                          </span>
@@ -64,7 +62,7 @@ class Palette extends Component {
         
       )
   
-  }
+  
 }
 
 export default Palette;

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Header.scss'
 import logo from '../assets/img/logo.jpg'
 
 
-class Header extends Component {
-  render() {
+function Header() {
     return (
       <header className="header">
         <div className="header__logo">
@@ -17,7 +16,7 @@ class Header extends Component {
         </div>
       </header>
     );
-  }
+  
 }
 
 export default Header;

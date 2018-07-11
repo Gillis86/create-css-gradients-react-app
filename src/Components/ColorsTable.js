@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ColorsTable.scss';
 
 
 
 
-class ColorsTable extends Component {
+function ColorsTable(props) {
   
-
-  render() {
-    const colors = this.props.colors
+    const colors = props.colors
 
     return (
       <div className="colorTable">
@@ -23,7 +21,7 @@ class ColorsTable extends Component {
            return  <div style={style} key={colorLabel} onClick={
              (event)=>{
               event.stopPropagation()
-               this.props.clicked(colorLabel)
+               props.clicked(colorLabel)
               }
            } className="colorTable__item">{colorLabel}</div>
           })
@@ -33,7 +31,7 @@ class ColorsTable extends Component {
       </div>
       )
   
-  }
+  
 }
 
 export default ColorsTable;
