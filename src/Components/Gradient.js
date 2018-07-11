@@ -5,31 +5,37 @@ import './Gradient.scss';
 
 class Gradient extends Component {
     state = {
-        code:null,
+        UserCode:null,
         showCode:false,
         codeHasChanged:false
     }
-   componentDidMount(){
-       this.props.setPermutations()
-       
-   }
-   componentWillReceiveProps(){
-    this.setState({
-        code: "linear-gradient("+this.props.colors.join(',')+")"
-    })
-    
-   }
 
-   setCode(string){
+    componentWillMount(){
+        console.log('will mount')
+        this.props.setPermutations()
+        
+    }
+ 
+  componentWillReceiveProps(){
+      if(this.state.code){
+          console.log('sta code we have')
+      }
+  }
+
+   setCode(code){
     this.setState({
         showCode:true,
-        code:string
+        UserCode:code
     })
    }
    showEditBtnHandler(event){
        this.setState({
         showEditBtn:true
     })
+   }
+
+   replaceAll(str,find,repl){
+       return str.split(find).join(repl)
    }
 
    /* changeGradients(){
@@ -40,20 +46,66 @@ class Gradient extends Component {
 
     
     render(){            
-        
+        console.log('render')
         let code = null;
         let editBtn = null;
         let message = null;
+        let style = null;
+        let colors = this.props.colors
+        let regex = /rgb\(\d{1,3},\s*\d{1,3},\s*\d{1,3}\)/
+            if(this.state.UserCode != null){
+                
+                 // questa riga è importante: qui vengono inzializzati i colori se 
+                                                // l'utente clicca su change
+                let userCode = this.state.UserCode // qui catturo la formula dell'utente
+                //console.log('state code we have')
+                //console.log(this.state.code)
+                let finalStyle = []
+                /* colors.forEach(color => {
+                    final = finalStyle.replace(regex,'color')
+                    console.log(final)
+                });
+                 */
+                let f;
 
-        if(this.state.code){
-            console.log(this.state.code)
-        }
-        
 
-        
-            const style = {
-                backgroundImage: /* this.state.code */"linear-gradient("+this.props.colors.join(',')+")"
+                for (let i=0;i<colors.length;i++){
+                    if(finalStyle.length){
+                        f = finalStyle[finalStyle.length - 1].replace(regex,colors[i])
+                        finalStyle.push(f)
+                    }else{
+                        f = userCode.replace(regex,colors[i])
+                        //console.log('first iteration',f)
+                        finalStyle.push(f)
+                    }
+                    
+                    
+                   
+                }
+                //console.log('final',finalStyle)
+                style = {
+                    backgroundImage: finalStyle[finalStyle.length - 1]
+                }
+
+            }else{
+                 style = {
+                    backgroundImage: "linear-gradient("+colors.join(',')+")"
+                }
             }
+      /*   if(this.state.code){
+            //console.log('code state',this.state.code)
+            //console.log('ref',this.refs.g__container.style.backgroundImage)
+
+        } */
+
+        
+        /* (function(){
+            that.setCode("linear-gradient("+this.props.colors.join(',')+")")
+        })() */
+        
+        
+            
+
        
 
         
@@ -65,7 +117,7 @@ class Gradient extends Component {
                     id="" 
                     cols="40" 
                     rows="2">
-                    {this.state.code}
+                    {this.state.UserCode}
                     </textarea>
                 
             )
@@ -78,7 +130,7 @@ class Gradient extends Component {
                     onClick={()=>{
                         const string = this.refs.codeText.value
                         this.setCode(string)
-                        this.refs.g__container.style.backgroundImage = string
+                        //this.refs.g__container.style.backgroundImage = string
                     }}>
                     Change
                 </button>
@@ -119,8 +171,8 @@ class Gradient extends Component {
                             <button className="gradient__controls--btn"
                         onClick={
                             ()=>{
-                                const string = this.refs.g__container.style.backgroundImage
-                                this.setCode(string)
+                                const code = this.refs.g__container.style.backgroundImage
+                                this.setCode(code)
                             }
                         }>Get Code</button>
                             </td>

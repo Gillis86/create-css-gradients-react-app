@@ -47,6 +47,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    React.Children.forEach(this.props.children, child => console.log(child.props))
+  }
+
 setColor(color){
   const colors = this.state.colors.slice(0);
   const duplicate = colors.find(c => c.color === color.color)
@@ -200,7 +204,10 @@ hideResult(){
         <i className="fas fa-times fa-3x"></i>
         </div>
         <Gradient 
-          colors={this.state.colors.map(color => color.color)}
+          colors={
+            this.state.colors.map(color => color.color)
+            
+          }
           shuffle={()=>this.shuffle()}
           setPermutations={() => this.setPermutations() }
         />
