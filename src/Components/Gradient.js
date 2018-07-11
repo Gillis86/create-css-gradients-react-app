@@ -7,21 +7,17 @@ class Gradient extends Component {
     state = {
         code:null,
         showCode:false,
+        codeHasChanged:false
     }
    componentDidMount(){
        this.props.setPermutations()
-       this.setState({
-           code: "linear-gradient("+this.props.colors.join(',')+")"
-       })
+       
    }
    componentWillReceiveProps(){
-    /* console.log(this.props.colors)
-    console.log(this.state.code)
-    console.log(this.refs.g__container.style.backgroundImage)
     this.setState({
         code: "linear-gradient("+this.props.colors.join(',')+")"
     })
-    */
+    
    }
 
    setCode(string){
@@ -49,9 +45,18 @@ class Gradient extends Component {
         let editBtn = null;
         let message = null;
 
-        const style = {
-            backgroundImage: this.state.code
+        if(this.state.code){
+            console.log(this.state.code)
         }
+        
+
+        
+            const style = {
+                backgroundImage: /* this.state.code */"linear-gradient("+this.props.colors.join(',')+")"
+            }
+       
+
+        
 
         if(this.state.showCode){
             code = (
@@ -71,10 +76,9 @@ class Gradient extends Component {
                     <button 
                     className="gradient__controls--btn"
                     onClick={()=>{
-                        //this.changeGradients()
                         const string = this.refs.codeText.value
                         this.setCode(string)
-                        //this.refs.g__container.style.backgroundImage = string
+                        this.refs.g__container.style.backgroundImage = string
                     }}>
                     Change
                 </button>
@@ -86,7 +90,7 @@ class Gradient extends Component {
             }
 
 
-        return(
+        return (
             <div className="gradient">
                 <div ref="g__container" className="gradient__container" style={style}></div>
                 <div className="gradient__controls">

@@ -98,14 +98,13 @@ setPermutations(){
 shuffle(){
     const value = this.state.perm_gen.next()
     if (!value.done){
-      console.log('inside if',value)
+      
         this.setState({
           colors: value.value
         })
-        console.log('before end if',this.state.colors)
+      
   }else{
     const perm_gen = this.permutation_gen(this.state.colorPermutations)
-    console.log('inside else',perm_gen.next().value)
       this.setState({
         perm_gen,
         colors: perm_gen.next().value
