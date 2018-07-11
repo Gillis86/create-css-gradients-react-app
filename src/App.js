@@ -6,6 +6,7 @@ import Gradient from './Components/Gradient'
 import data from './data/data';
 import './App.scss';
 
+
 class App extends Component {
 
  state = {
@@ -95,18 +96,24 @@ setPermutations(){
 }
 
 shuffle(){
-  const value = this.state.perm_gen.next()
-  if (!value.done){
-    this.setState({
-      colors: value.value
-    })
+    const value = this.state.perm_gen.next()
+    if (!value.done){
+      console.log('inside if',value)
+        this.setState({
+          colors: value.value
+        })
+        console.log('before end if',this.state.colors)
   }else{
     const perm_gen = this.permutation_gen(this.state.colorPermutations)
-    this.setState({
-      perm_gen,
-      colors: perm_gen.next().value
-    })
-  }
+    console.log('inside else',perm_gen.next().value)
+      this.setState({
+        perm_gen,
+        colors: perm_gen.next().value
+        })
+
+    }
+  
+  
   
 }
 
