@@ -1,21 +1,33 @@
 .header{
     display: flex;
     width:100%;
-    background:#990100;
-    justify-content: space-around;
+    background:linear-gradient(245deg, rgb(179, 229, 252), rgb(216, 27, 96), rgb(174, 213, 129));
+    justify-content: flex-end;
     align-items: center;
+    flex-direction: column;
+    height:100vh;
 
     &__logo{
-        &--img{
-            width:24rem;
-            height:auto;
+        margin-top:-10rem;
+        margin-bottom:3rem;
+        & i{
+            color:#fff;
         }
     }
 
     &__intro{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &--desc{
             color:#fff;
             font-size:3rem;
+            letter-spacing: 1px;
+            font-family: 'Shrikhand', cursive;
+        }
+        & i{
+            margin-left:3rem;
+            color:#fff;
         }
     }
 }

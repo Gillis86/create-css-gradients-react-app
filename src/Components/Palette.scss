@@ -25,9 +25,8 @@
         padding:2rem 4rem;
         cursor: pointer;
         font-weight:bold;
-        transition: transform .2s, padding .2s;
+        transition: transform .2s;
         position:relative;
-        will-change: padding;
         & span{
             margin-left:1rem;
             opacity:0;

@@ -16,11 +16,11 @@ class Gradient extends Component {
         
     }
  
-  componentWillReceiveProps(){
+  /* componentWillReceiveProps(){
       if(this.state.code){
-          console.log('sta code we have')
+
       }
-  }
+  } */
 
    setCode(code){
     this.setState({
@@ -47,6 +47,7 @@ class Gradient extends Component {
     
     render(){            
         console.log('render')
+        console.log(this.props.colors)
         let code = null;
         let editBtn = null;
         let message = null;
@@ -60,6 +61,7 @@ class Gradient extends Component {
                 let userCode = this.state.UserCode // qui catturo la formula dell'utente
                 //console.log('state code we have')
                 //console.log(this.state.code)
+                console.log(userCode)
                 let finalStyle = []
                 /* colors.forEach(color => {
                     final = finalStyle.replace(regex,'color')
@@ -78,7 +80,7 @@ class Gradient extends Component {
                         //console.log('first iteration',f)
                         finalStyle.push(f)
                     }
-                    
+                    console.log(finalStyle)
                     
                    
                 }
@@ -92,23 +94,10 @@ class Gradient extends Component {
                     backgroundImage: "linear-gradient("+colors.join(',')+")"
                 }
             }
-      /*   if(this.state.code){
-            //console.log('code state',this.state.code)
-            //console.log('ref',this.refs.g__container.style.backgroundImage)
-
-        } */
-
-        
-        /* (function(){
-            that.setCode("linear-gradient("+this.props.colors.join(',')+")")
-        })() */
+   
         
         
-            
-
-       
-
-        
+         
 
         if(this.state.showCode){
             code = (
@@ -121,9 +110,11 @@ class Gradient extends Component {
                     </textarea>
                 
             )
-        }
 
-            if(this.state.showCode){
+           
+        
+
+           
                 editBtn = (
                     <button 
                     className="gradient__controls--btn"
@@ -137,7 +128,11 @@ class Gradient extends Component {
                 )
 
                 message = (
-                    <p className="gradient__controls--message">Edit the code below and click change to see the result</p>
+                    <div>
+                    <p className="gradient__controls--message">Edit the code below and click change to see the result </p>
+                    <p className="gradient__controls--message">Don't change the color value!</p>
+                    </div>
+                    
                 )
             }
 
@@ -182,6 +177,28 @@ class Gradient extends Component {
                     </table>
                     <div className="gradient__controls--code">
                         {code} 
+                    </div>
+                    <div className="gradient__controls--colors">
+                        {
+                           this.props.colors.map(color=>{
+                            return <div
+                            key={color} 
+                            onClick={
+                                ()=>{
+                                 
+                                
+                                }
+                            }
+                            style={
+                                {
+                                    background:color,
+                                    color: color === '#000000' ? 'grey' : 'black'
+                                }
+                            } className="gradient__controls--colors--item">
+                                {color}
+                            </div>
+                        })
+                        } 
                     </div>
                 </div>
             </div>

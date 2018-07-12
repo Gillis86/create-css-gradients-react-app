@@ -23,7 +23,7 @@
         padding:2rem;
 
         &--table{
-            order:1;
+            
             width:100%;
             border-collapse: collapse;
             margin-bottom:1rem;
@@ -34,24 +34,34 @@
                 padding:2rem;
             }
         }
-
+        &--colors{
+            display: flex;
+            flex-wrap:wrap;
+            padding:2rem;
+            &--item{
+                padding:1rem 4rem;
+                font-weight:bold;
+            }
+        }
         &--code{
             width:100%;
             //text-align: center;
             display: block;
             align-self: flex-end;
-            order:2;
             padding:2rem;
         }
         &--message{
-            color:#ef5350;
+            color:rgb(233, 30, 99);
             font-size:1.3rem;
+            letter-spacing:1px;
+            
         }
         &--btn{
             border:none;
-            background: #ef5350;
+            background: rgb(233, 30, 99);
             padding:1rem 3rem;
             color:#fff;
+            letter-spacing: 1px;
             cursor:pointer;
             text-transform: uppercase;
             transition: transform .2s;

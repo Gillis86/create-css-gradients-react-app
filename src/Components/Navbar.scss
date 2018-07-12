@@ -1,0 +1,36 @@
+.navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    padding:3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(34deg, rgba(144, 202, 249,.45), rgba(233, 30, 99,.45), rgba(212, 225, 87,.45));
+    z-index:9999999;
+    &__btn{
+        background: rgb(233, 30, 99);
+        border:none;
+        padding:1rem 3rem;
+            color:#fff;
+            cursor:pointer;
+            text-transform: uppercase;
+            transition: transform .2s;
+            letter-spacing: 1px;
+            &:hover{
+                transform:translateY(-2px)
+            }
+            &:active{
+                transform: translateY(0)
+            }
+
+    }
+
+    &__heading{
+        color:#fff;
+        font-size:1.5rem;
+        letter-spacing:1px;
+        text-transform:uppercase;
+    }
+}

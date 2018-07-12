@@ -3,6 +3,7 @@ import Header from './Components/Header';
 import ColorsTable from './Components/ColorsTable';
 import Palette from './Components/Palette'
 import Gradient from './Components/Gradient'
+import Navbar from './Components/Navbar'
 import data from './data/data';
 import './App.scss';
 
@@ -162,6 +163,7 @@ removePalette(label){
 }
 
 
+
 hideResult(){
   //console.log(this.state.colors)
   this.setState({
@@ -176,10 +178,11 @@ hideResult(){
     if(this.state.palettes.length !== 0){
       const palettes = this.state.palettes
       palettesRendering = (
+        <div>
+        <Navbar
+        showResult={()=>this.showResultHandler()}
+        />
         <div ref="palettes" className="palettes">
-        <div className="palettes__heading">
-          <h3>Select your colors from the palettes and get the result</h3>
-        </div>
         {palettes.map(palette => {
             return <Palette
                       key={palette.label} 
@@ -191,16 +194,13 @@ hideResult(){
                       />
                       
           })}
-          <button className="result__btn" onClick={this.showResultHandler.bind(this)}>
-              Combine
-        </button>
         </div>
+      </div>   
       );
       ScrollBtn = (
         <div className="scroll"
         onClick={
           ()=> {
-            console.log(this.refs.palettes)
             const palettesDOMRef = this.refs.palettes
             const pos = palettesDOMRef.offsetTop
             window.scrollTo({
@@ -211,8 +211,6 @@ hideResult(){
         }
         >
           <i className="fas fa-arrow-down scroll__icon fa-3x"></i>
-          <span>start selecting colors</span>
-
         </div>
       )
     }
@@ -237,17 +235,21 @@ hideResult(){
 
     return (
       <div className="App">
-        <Header/>
-        <ColorsTable
-        clicked={(payload) => this.setPalette(payload)}
-        //showResultHandler={() => this.showResultHandler()} 
-        colors={{
-          labels:Object.keys(this.state.data),
-          colors:this.state.data
-        }}
+        <Header
+          clicked={(payload) => this.setPalette(payload)}
+          colors={{
+            labels:Object.keys(this.state.data),
+            colors:this.state.data
+          }}
+          activePalettes={
+            this.state.palettes
+          }
         />
-        <main className="main">
+        <div className="scroll__wrapper">
         {ScrollBtn}
+        </div>
+        
+        <main className="main">
         {palettesRendering}
         {result}
         </main>
