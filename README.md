@@ -19,6 +19,6 @@ https://d2hxezalm5sz4p.cloudfront.net/
 
 
 ## TO DO
-responsive
+Mobile responsive
 
-implement gradient controls
+Improve gradient controls
