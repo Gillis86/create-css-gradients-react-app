@@ -21,10 +21,10 @@ function Header(props) {
         </div>
         <div className="header__intro">
             <h3 className="header__intro--desc">
-                Create Linear Gradients from Scratch
+                Create Wonderful Gradients from Scratch!
             </h3>
-            <a href="#">
-            <i class="fab fa-github fa-4x"></i>
+            <a href="https://github.com/Gillis86/create-gradient-react-app" rel="noopener noreferrer" target="_blank">
+            <i className="fab fa-github fa-4x"></i>
             </a>
             
         </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Components/Header';
-import ColorsTable from './Components/ColorsTable';
 import Palette from './Components/Palette'
 import Gradient from './Components/Gradient'
 import Navbar from './Components/Navbar'
@@ -16,7 +15,8 @@ class App extends Component {
   colors:[],
   showResult:false,
   perm_gen:null,
-  colorPermutations:null
+  colorPermutations:null,
+  gradientMode:'linear'
 }
 
   setPalette(colorLabel){
@@ -168,7 +168,8 @@ hideResult(){
   //console.log(this.state.colors)
   this.setState({
     showResult:false,
-    colorPermutations:null
+    colorPermutations:null,
+    gradientMode:'linear'
   })
 }
   render() {
@@ -226,6 +227,8 @@ hideResult(){
             this.state.colors.map(color => color.color)
             
           }
+          setMode={(mode)=>this.setState({gradientMode:mode})}
+          mode={this.state.gradientMode}
           shuffle={()=>this.shuffle()}
           setPermutations={() => this.setPermutations() }
         />
