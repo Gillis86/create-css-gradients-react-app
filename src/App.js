@@ -16,7 +16,8 @@ class App extends Component {
   showResult:false,
   perm_gen:null,
   colorPermutations:null,
-  gradientMode:'linear'
+  gradientMode:'linear',
+  showCode:false
 }
 
   setPalette(colorLabel){
@@ -162,14 +163,19 @@ removePalette(label){
   } */
 }
 
-
+showCodeHandler(){
+  this.setState({
+    showCode:true
+  })
+}
 
 hideResult(){
   //console.log(this.state.colors)
   this.setState({
     showResult:false,
     colorPermutations:null,
-    gradientMode:'linear'
+    gradientMode:'linear',
+    showCode:false
   })
 }
   render() {
@@ -227,6 +233,8 @@ hideResult(){
             this.state.colors.map(color => color.color)
             
           }
+          showCode={this.state.showCode}
+          showCodeHandler={()=>this.showCodeHandler()}
           setMode={(mode)=>this.setState({gradientMode:mode})}
           mode={this.state.gradientMode}
           shuffle={()=>this.shuffle()}

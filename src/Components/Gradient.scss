@@ -3,7 +3,7 @@
     display:flex;
     width:calc(100% - 2rem);
     margin:0 auto;
-    height:50%;
+    height:70%;
 
     &__edit{
 
@@ -24,6 +24,8 @@
 
         &--switch{
             width:16rem;
+            //padding-left:2rem;
+            margin-left:2rem;
         }
 
         &--wrapper{
