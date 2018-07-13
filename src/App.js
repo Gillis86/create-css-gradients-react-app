@@ -17,7 +17,11 @@ class App extends Component {
   perm_gen:null,
   colorPermutations:null,
   gradientMode:'linear',
-  showCode:false
+  radialShape:'circle',
+  radialPosX:'50',
+  radialPosY:'50',
+  linearAngle:'90'
+
 }
 
   setPalette(colorLabel){
@@ -49,9 +53,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-    React.Children.forEach(this.props.children, child => console.log(child.props))
-  }
 
 setColor(color){
   const colors = this.state.colors.slice(0);
@@ -122,6 +123,44 @@ shuffle(){
   
 }
 
+changeGradientProps(payload){
+    switch (payload.label){
+      case 'linearAngle':
+        this.setState({
+          linearAngle:payload.prop
+        })
+        break
+      case 'radialShape':
+        this.setState({
+          radialShape:payload.prop
+       })
+        break
+      case 'radialPosX':
+        this.setState({
+          radialPosX:payload.prop
+         })
+         break
+      case 'radialPosY':
+         this.setState({
+           radialPosY:payload.prop
+          })
+          break
+      default:
+          console.log(payload)
+          break
+    }
+  
+  
+
+
+}
+
+
+
+
+
+
+
 removeColor(color){
   const colors = this.state.colors.slice(0);
   //console.log(colors.indexOf(color))
@@ -156,18 +195,9 @@ removePalette(label){
     palettes,
     colors 
   })
-  /* if(palettes.length === 0){
-    this.setState({
-      colors:[]
-    })
-  } */
 }
 
-showCodeHandler(){
-  this.setState({
-    showCode:true
-  })
-}
+
 
 hideResult(){
   //console.log(this.state.colors)
@@ -229,16 +259,16 @@ hideResult(){
         <i className="fas fa-times fa-3x"></i>
         </div>
         <Gradient 
-          colors={
-            this.state.colors.map(color => color.color)
-            
-          }
-          showCode={this.state.showCode}
-          showCodeHandler={()=>this.showCodeHandler()}
+          colors={this.state.colors.map(color => color.color)}
+          changeGradientProps={(payload)=>this.changeGradientProps(payload)}
           setMode={(mode)=>this.setState({gradientMode:mode})}
           mode={this.state.gradientMode}
           shuffle={()=>this.shuffle()}
           setPermutations={() => this.setPermutations() }
+          radialShape= {this.state.radialShape}
+          radialPosX = {this.state.radialPosX}
+          radialPosY = {this.state.radialPosY}
+          linearAngle = {this.state.linearAngle}
         />
         </div>
       )
