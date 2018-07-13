@@ -5,8 +5,45 @@
     margin:0 auto;
     height:70%;
 
-    &__edit{
+    &__linear{
+        & input{
 
+        }
+        &--btn{
+            padding:.5rem 1rem !important;
+            margin-left:1rem;
+        }
+    }
+
+    &__radial{
+        display: flex;
+        flex-wrap:wrap;
+        flex-direction: column;
+        & select{
+            margin:1rem 0;
+            width:14.5rem;
+        }
+
+        &--pos{
+            display:flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            & div{
+                display: flex;
+                &:not(:last-child){
+                    margin-bottom:1rem;
+                }
+                
+            }
+            & button{
+                margin-left:1rem;
+                padding:.1rem .5rem !important;
+            }
+        }
+
+        & input{
+            margin:1rem 0;
+        }
     }
 
     &__container{
@@ -62,12 +99,7 @@
             align-self: flex-end;
             padding:2rem;
         }
-        &--message{
-            color:rgb(233, 30, 99);
-            font-size:1.3rem;
-            letter-spacing:1px;
-            
-        }
+
         &--btn{
             border:none;
             background: rgb(233, 30, 99);
