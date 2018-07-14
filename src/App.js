@@ -215,7 +215,7 @@ hideResult(){
   render() {
     let palettesRendering = null;
     let result = null;
-    let ScrollBtn = null;
+    /* let ScrollBtn = null; */
     if(this.state.palettes.length !== 0){
       const palettes = this.state.palettes
       palettesRendering = (
@@ -223,7 +223,7 @@ hideResult(){
         <Navbar
         showResult={()=>this.showResultHandler()}
         />
-        <div ref="palettes" className="palettes">
+        <div id="palettesID" className="palettes">
         {palettes.map(palette => {
             return <Palette
                       key={palette.label} 
@@ -238,22 +238,6 @@ hideResult(){
         </div>
       </div>   
       );
-      ScrollBtn = (
-        <div className="scroll"
-        onClick={
-          ()=> {
-            const palettesDOMRef = this.refs.palettes
-            const pos = palettesDOMRef.offsetTop
-            window.scrollTo({
-            top:pos,
-            behavior:'smooth'
-          })
-        }
-        }
-        >
-          <i className="fas fa-arrow-down scroll__icon fa-3x"></i>
-        </div>
-      )
     }
 
     if(this.state.showResult){
@@ -286,13 +270,11 @@ hideResult(){
             labels:Object.keys(this.state.data),
             colors:this.state.data
           }}
+          showBtnScroll={this.state.palettes.length !== 0}
           activePalettes={
             this.state.palettes
           }
         />
-        <div className="scroll__wrapper">
-        {ScrollBtn}
-        </div>
         
         <main className="main">
         {palettesRendering}

@@ -5,16 +5,23 @@ import './Gradient.scss';
 
 
 class Gradient extends Component {
-    state = {
-        linearAngle:null,
-        radialPosX:null,
-        radialPosY:null
-    }
-
+    
     componentWillMount(){
         this.props.setPermutations()
+        console.log('[Gradient.js] componentWillMount')
 
         
+    }
+
+   /*  shouldComponentUpdate(nextProps){
+        console.log('next',nextProps.linearAngle)
+        console.log('this',this.props.linearAngle)
+        //return nextProps.linearAngle !== this.props.linearAngle
+        return true
+    } */
+
+    componentWillUpdate(){
+    
     }
 
  
@@ -31,7 +38,9 @@ class Gradient extends Component {
 
 
     
-    render(){            
+    render(){
+        
+        console.log('[Gradient.js] render start')
        const {colors, mode, radialShape, radialPosX, radialPosY, linearAngle, changeGradientProps} = this.props
 
      
@@ -50,16 +59,19 @@ class Gradient extends Component {
 
             controls=(
                 <div className="gradient__linear">
-                    <input type="number" onChange={
-                        (event)=> this.setState({linearAngle:event.target.value})
+                    <input ref="lA" type="number" defaultValue={
+                        linearAngle
                     } />
                     <button className="gradient__linear--btn gradient__controls--btn" onClick={
                         ()=>{
-                            
-                                changeGradientProps({
-                                    prop:this.state.linearAngle,
-                                    label:'linearAngle'
-                                })
+                                //console.log(this.refs.lA.value)
+                                //if(typeof this.refs.lA.value === 'string' && this.refs.lA.value !== ''){
+                                    changeGradientProps({
+                                        prop:this.refs.lA.value,
+                                        label:'linearAngle'
+                                    })
+                                //}
+                                
                             
                             
                         }
@@ -94,30 +106,35 @@ class Gradient extends Component {
                     </select>
                     <div className="gradient__radial--pos">
                         <div>
-                            <input type="number" name="" id="" onChange={
-                                (event)=> this.setState({radialPosX:event.target.value})
-                            }/>
+                            <input ref="rPX" type="number" name="" id="" defaultValue={
+                        radialPosX
+                    } />
                             <button className="gradient__controls--btn" onClick={
                                 ()=>{
-                                    changeGradientProps({
-                                        prop:this.state.radialPosX,
-                                        label:'radialPosX'
-                                    })
+                                    
+                                    //if(typeof this.refs.rPX.value === 'string' && this.refs.rPX.value !== ''){
+                                        changeGradientProps({
+                                            prop:this.refs.rPX.value,
+                                            label:'radialPosX'
+                                        })
+                                    //}
                                 }
                                 
 
                             }>set X (%)</button>
                         </div>
                         <div>
-                            <input type="number" name="" id="" onChange={
-                                (event)=> this.setState({radialPosY:event.target.value})
-                            }/>
+                            <input ref="rPY" type="number" name="" id="" defaultValue={
+                        radialPosY
+                    } />
                             <button className="gradient__controls--btn" onClick={
                                 ()=>{
-                                    changeGradientProps({
-                                        prop:this.state.radialPosY,
-                                        label:'radialPosY'
-                                    })
+                                    //if(typeof this.refs.rPY.value === 'string' && this.refs.rPY.value !== ''){
+                                        changeGradientProps({
+                                            prop:this.refs.rPY.value,
+                                            label:'radialPosY'
+                                        })
+                                    //}
                                 }
                                 
                                 
@@ -202,12 +219,6 @@ class Gradient extends Component {
                            this.props.colors.map(color=>{
                             return <div
                             key={color} 
-                            onClick={
-                                ()=>{
-                                 
-                                
-                                }
-                            }
                             style={
                                 {
                                     background:color,
