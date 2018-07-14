@@ -205,7 +205,11 @@ hideResult(){
     showResult:false,
     colorPermutations:null,
     gradientMode:'linear',
-    showCode:false
+    showCode:false,
+    radialShape:'circle',
+    radialPosX:'50',
+    radialPosY:'50',
+    linearAngle:'90'
   })
 }
   render() {
