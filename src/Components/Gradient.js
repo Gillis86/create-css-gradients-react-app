@@ -18,14 +18,14 @@ class Gradient extends Component {
     }
 
  
-  componentWillReceiveProps(){
-      setTimeout(()=>{
+  componentDidUpdate(){
+      console.log('[Gradient.js] component did update')
             const textArea = this.refs.codeText
             if(textArea){
                 this.refs.codeText.value = this.refs.g__container.style.backgroundImage
                         }
                                     
-                },0)
+               
   }
                     
 
@@ -94,9 +94,7 @@ class Gradient extends Component {
                     </select>
                     <div className="gradient__radial--pos">
                         <div>
-                            <input type="number" name="" id="" value={
-                                this.state.radialPosX
-                            } onChange={
+                            <input type="number" name="" id="" onChange={
                                 (event)=> this.setState({radialPosX:event.target.value})
                             }/>
                             <button className="gradient__controls--btn" onClick={
@@ -111,9 +109,7 @@ class Gradient extends Component {
                             }>set X (%)</button>
                         </div>
                         <div>
-                            <input type="number" name="" id="" value={
-                                this.state.radialPosY
-                            } onChange={
+                            <input type="number" name="" id="" onChange={
                                 (event)=> this.setState({radialPosY:event.target.value})
                             }/>
                             <button className="gradient__controls--btn" onClick={

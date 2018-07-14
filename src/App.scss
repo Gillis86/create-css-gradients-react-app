@@ -68,7 +68,7 @@
       right:5%;
       color:#fff;
       cursor: pointer;
-      z-index:9999999999999
+      z-index:99999999
 
       
     }
@@ -76,6 +76,8 @@
 
 
   .scroll{
+    position: relative;
+    z-index:999999999;
     &__wrapper{
       width:100%;
       display: flex;

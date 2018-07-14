@@ -4,6 +4,12 @@
     width:calc(100% - 2rem);
     margin:0 auto;
     height:70%;
+    @media screen and (max-width:600px) {
+        flex-direction: column;
+        width:100%;
+        height:100%;
+        margin:0;
+    }
 
     &__linear{
         & input{
@@ -19,9 +25,18 @@
         display: flex;
         flex-wrap:wrap;
         flex-direction: column;
+        @media screen and (max-width:600px) {
+            
+            
+        }
         & select{
             margin:1rem 0;
             width:14.5rem;
+            @media screen and (max-width:600px) {
+                align-self: flex-start;
+                margin-right:2rem;
+            }
+            
         }
 
         &--pos{
@@ -38,6 +53,9 @@
             & button{
                 margin-left:1rem;
                 padding:.1rem .5rem !important;
+                @media screen and (max-width:600px) {
+                    font-size: 1.2rem;
+                }
             }
         }
 
@@ -49,6 +67,10 @@
     &__container{
         width:60%;
         height:100%;
+        @media screen and (max-width:600px) {
+            width:100%;
+            height:30%;
+        }
     }
     &__controls{
         height:100%;
@@ -58,6 +80,10 @@
         justify-content: center;
         align-items: flex-start;
         padding:2rem;
+        @media screen and (max-width:600px) {
+            width:100%;
+            height:70%;
+        }
 
         &--switch{
             width:16rem;
@@ -72,7 +98,9 @@
         }
 
         &--table{
-            
+            @media screen and (max-width:600px) {
+                margin:0;
+            }
             width:100%;
             border-collapse: collapse;
             margin-bottom:1rem;

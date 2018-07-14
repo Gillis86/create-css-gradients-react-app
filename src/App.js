@@ -173,12 +173,12 @@ removeColor(color){
 }
 
 showResultHandler(){
-  if(this.state.colors.length > 1 && this.state.colors.length <= 6){
+  if(this.state.colors.length > 1 && this.state.colors.length <= 7){
     this.setState({
       showResult: true
     })
-  }else if(this.state.colors.length >= 7){
-    alert('Try with at most 6 colors for performance reasons')
+  }else if(this.state.colors.length >= 8){
+    alert('Try with at most 7 colors for performance reasons')
   }else{
     alert('Combine at least two color')
   }

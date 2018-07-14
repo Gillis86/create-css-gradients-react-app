@@ -9,6 +9,9 @@
     padding-top:3rem;
     padding-bottom:5rem;
     background: rgba(#fff,.25);
+    @media screen and (max-width:600px) {
+        padding-bottom:30rem;
+    }
 
 
     &__labels{
@@ -32,6 +35,9 @@
     }
     &__item{
         padding:1.5rem 4rem;
+        @media screen and (max-width:600px) {
+            padding:1rem 3.5rem;
+        }
         color:#fff;
         //margin:1.5rem;
         font-weight: 900;

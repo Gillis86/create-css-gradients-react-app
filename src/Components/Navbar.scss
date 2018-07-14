@@ -9,6 +9,9 @@
     align-items: center;
     background: linear-gradient(34deg, rgba(144, 202, 249,.45), rgba(233, 30, 99,.45), rgba(212, 225, 87,.45));
     z-index:9999999;
+    @media screen and (max-width:600px) {
+        justify-content: flex-start;
+    }
     &__btn{
         background: rgb(233, 30, 99);
         border:none;
@@ -32,5 +35,8 @@
         font-size:1.5rem;
         letter-spacing:1px;
         text-transform:uppercase;
+        @media screen and (max-width:600px) {
+            display:none;
+        }
     }
 }
