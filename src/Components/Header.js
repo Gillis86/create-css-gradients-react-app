@@ -1,12 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ColorsTableWrapper from '../hco/ColorsTableWrapper'
 import './Header.scss'
 import './ColorsTable.scss';
 
 
 
-function Header(props) {
-  let ScrollBtn;
-    if(props.showBtnScroll){
+class Header extends Component {
+  state = {
+    mq:false
+  }
+componentWillMount(){
+  if(window.matchMedia("(max-width: 600px)").matches){
+    this.setState({
+      mq:true
+    })
+  }
+
+    window.addEventListener('resize',()=>{
+      if(window.matchMedia("(max-width: 600px)").matches){
+        this.setState({
+          mq:true
+        })
+      }
+    })
+}
+
+  render(){
+    let ScrollBtn;
+
+    console.log('[Header.js] render()')
+    if(this.props.showBtnScroll){
       ScrollBtn = (
         <div className="scroll"
         onClick={
@@ -25,12 +48,7 @@ function Header(props) {
       )
     }
     
-    const colors = props.colors
-
-    function isIncluded(el,array){
-        return array.includes(el)
-    }
-
+    const colors = this.props.colors
 
     return (
       <header className="header">
@@ -53,11 +71,11 @@ function Header(props) {
         
         <div className="colorTable">
         <h3 className="colorTable__heading">Select the palettes</h3>
-      <div className="colorTable__labels">
-      {colors.labels.map( colorLabel => {
+      <ColorsTableWrapper mq={this.state.mq}>
+        {colors.labels.map( colorLabel => {
         let values = colors.colors[colorLabel]
-        let isActive = isIncluded(colorLabel,props.activePalettes.map(p => p.label));
-        //console.log(colors.colors[colorLabel])
+        let isActive = this.props.activePalettes.map(p => p.label).includes(colorLabel)
+        if(isActive) console.log(colorLabel)
           let style = {
             backgroundColor: values[values.length - 1 ],
             transform: isActive ?
@@ -65,24 +83,33 @@ function Header(props) {
             zIndex: isActive ?
             '9999999' : '0',
             border: isActive ? '2px solid #fff' : 'none'
-            //transform:isActive ? 'scale(1.2)' : 'scale(1)'
           }
-           return  <div style={style} key={colorLabel} onClick={
-             (event)=>{
-              event.stopPropagation()
-               props.clicked(colorLabel)
+           return <div key={colorLabel}>
+
+          <div style={style}  onClick={
+             ()=>{
+             /*  event.stopPropagation() */
+               this.props.clicked(colorLabel)
               }
            } className="colorTable__item">{colorLabel}</div>
+
+           </div> 
+           
           })
-        }
-      
-      </div>
-      </div>
+        }       
+      </ColorsTableWrapper>
       <div className="scroll__wrapper">
         {ScrollBtn}
         </div>
+      </div>
+      
       </header>
     );
+
+
+  }
+
+  
   
 }
 

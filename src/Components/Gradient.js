@@ -59,11 +59,15 @@ class Gradient extends Component {
 
             controls=(
                 <div className="gradient__linear">
-                    <input ref="lA" type="number" defaultValue={
+
+                <form>
+
+                        <input ref="lA" type="number" defaultValue={
                         linearAngle
                     } />
-                    <button className="gradient__linear--btn gradient__controls--btn" onClick={
-                        ()=>{
+                    <button type="submit" className="gradient__linear--btn gradient__controls--btn" onClick={
+                        (event)=>{
+                                event.preventDefault()
                                 //console.log(this.refs.lA.value)
                                 //if(typeof this.refs.lA.value === 'string' && this.refs.lA.value !== ''){
                                     changeGradientProps({
@@ -76,6 +80,10 @@ class Gradient extends Component {
                             
                         }
                     }>Set Angle</button>
+
+
+                </form>
+                    
                 </div>
                 
             )
@@ -106,11 +114,15 @@ class Gradient extends Component {
                     </select>
                     <div className="gradient__radial--pos">
                         <div>
-                            <input ref="rPX" type="number" name="" id="" defaultValue={
+                            <form>
+
+
+                                <input ref="rPX" type="number" name="" id="" defaultValue={
                         radialPosX
                     } />
-                            <button className="gradient__controls--btn" onClick={
-                                ()=>{
+                            <button type="submit" className="gradient__controls--btn" onClick={
+                                (event)=>{
+                                        event.preventDefault()
                                     
                                     //if(typeof this.refs.rPX.value === 'string' && this.refs.rPX.value !== ''){
                                         changeGradientProps({
@@ -122,13 +134,21 @@ class Gradient extends Component {
                                 
 
                             }>set X (%)</button>
+
+
+                            </form>
+                            
                         </div>
                         <div>
-                            <input ref="rPY" type="number" name="" id="" defaultValue={
+
+                            <form>
+
+                                <input ref="rPY" type="number" name="" id="" defaultValue={
                         radialPosY
                     } />
                             <button className="gradient__controls--btn" onClick={
-                                ()=>{
+                                (event)=>{
+                                    event.preventDefault()
                                     //if(typeof this.refs.rPY.value === 'string' && this.refs.rPY.value !== ''){
                                         changeGradientProps({
                                             prop:this.refs.rPY.value,
@@ -141,6 +161,9 @@ class Gradient extends Component {
 
 
                              }>set Y (%)</button>
+
+                            </form>
+                            
                         </div>
                         
                     </div>

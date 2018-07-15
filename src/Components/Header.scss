@@ -63,6 +63,10 @@
 .scroll{
     /* position: relative;
     z-index:9999999; */
+    margin-top:3rem;
+    @media screen and (max-width:600px) {
+        margin-top:-5rem;
+    }
     &__wrapper{
       width:100%;
       display: flex;
@@ -76,7 +80,7 @@
     &__icon{
       animation: pulse 2s infinite;
       transition: transform .2s;
-      background: rgba(#fff,.75);;
+      background: rgba(#fff,.75);
       color:rgb(233, 30, 99);
       padding:1rem;
       border-radius:50%;
