@@ -1,4 +1,4 @@
-# Create Linear Gradient
+# Create Wonderful Gradients from scratch
 
 ## Demo
 
