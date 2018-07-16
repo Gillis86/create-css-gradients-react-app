@@ -7,12 +7,15 @@ import data from './data/data';
 import './App.scss';
 
 
+let copy = [];
+
 class App extends Component {
 
  state = {
   data:data,
   palettes:[],
   colors:[],
+  //colorsCopy:null,
   showResult:false,
   perm_gen:null,
   colorPermutations:null,
@@ -69,13 +72,13 @@ setColor(color){
 
 
 
-permutation_gen = function*(permutations){
+/* permutation_gen = function*(permutations){
   for (let p of permutations){
   	yield p
   }
-}
+} */
 
-permutation(array) {
+/* permutation(array) {
   function p(array, temp) {
       let i, x;
       if (!array.length) {
@@ -92,42 +95,46 @@ permutation(array) {
   p(array, []);
   return result
 }
-
-permute =  function*(a, n = a.length) {
+ */
+*permute(a, n = a.length) {
   if (n <= 1) yield a.slice();
   else for (let i = 0; i < n; i++) {
-    yield permute(a, n - 1);
+    yield * this.permute(a, n - 1);
     const j = n % 2 ? 0 : i;
     [a[n-1], a[j]] = [a[j], a[n-1]];
   }
 }
 
-async setPermutations(){
-  //const permutations = await this.permutation(this.state.colors)
-  const perm_gen = this.permute(this.state.colors).bind(this)//this.permutation_gen(permutations.slice(1))
-  this.setState({
-    perm_gen,
-    //colorPermutations: permutations
-  })
+setPermutations(){
+ 
+  const perm_gen = this.permute(copy)   
+  /* console.log(perm_gen.next())  */
+  perm_gen.next()
+
+  this.setState((previousState) => {
+    return { ...previousState, colors:copy.slice(0), perm_gen };
+});
+    
+  
 }
 
 shuffle(){
-    const value = this.state.perm_gen.next()
-    if (!value.done){
-      
-        this.setState({
-          colors: value.value
-        })
-      
-  }else{
-    const perm_gen = this.permute(this.state.colors)     //this.permutation_gen(this.state.colorPermutations)
-      this.setState({
-        perm_gen,
-        colors: perm_gen.next().value
-        })
-
+  console.log('copy in shuffle',copy)
+    let value =   this.state.perm_gen.next()
+    if( !value.done  ){
+      value = this.state.perm_gen.next()
     }
-  
+    /* console.log('value',value) */
+    if(value.done){
+      this.setPermutations()
+    }else{
+      this.setState({
+        colors: value.value
+      })
+    }
+
+    
+   
   
   
 }
@@ -182,12 +189,16 @@ removeColor(color){
 }
 
 showResultHandler(){
-  if(this.state.colors.length > 1 && this.state.colors.length <= 9){
+  if(this.state.colors.length > 1){
+      copy = [...this.state.colors]
+    /* console.log('copy === colors',copy === this.state.colors) */
+    console.log('copy in showResultHandler',copy)
+    const perm_gen = this.permute(this.state.colors)      //this.permutation_gen(permutations.slice(1))
+    /* const colors = perm_gen.next().value */
     this.setState({
-      showResult: true
+      showResult: true,
+        perm_gen,
     })
-  }else if(this.state.colors.length >= 9){
-    alert('Try with at most 7 colors for performance reasons')
   }else{
     alert('Combine at least two color')
   }
@@ -212,7 +223,7 @@ hideResult(){
   //console.log(this.state.colors)
   this.setState({
     showResult:false,
-    colorPermutations:null,
+    //colorsCopy:null,
     gradientMode:'linear',
     showCode:false,
     radialShape:'circle',
@@ -220,6 +231,7 @@ hideResult(){
     radialPosY:'50',
     linearAngle:'90'
   })
+  copy = null;
 }
   render() {
     let palettesRendering = null;
@@ -261,7 +273,7 @@ hideResult(){
           setMode={(mode)=>this.setState({gradientMode:mode})}
           mode={this.state.gradientMode}
           shuffle={()=>this.shuffle()}
-          setPermutations={() => this.setPermutations() }
+          /* setPermutations={() => this.setPermutations(copy) } */
           radialShape= {this.state.radialShape}
           radialPosX = {this.state.radialPosX}
           radialPosY = {this.state.radialPosY}

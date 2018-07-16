@@ -28,7 +28,7 @@ componentWillMount(){
   render(){
     let ScrollBtn;
 
-    console.log('[Header.js] render()')
+    /* console.log('[Header.js] render()') */
     if(this.props.showBtnScroll){
       ScrollBtn = (
         <div className="scroll"
@@ -75,7 +75,6 @@ componentWillMount(){
         {colors.labels.map( colorLabel => {
         let values = colors.colors[colorLabel]
         let isActive = this.props.activePalettes.map(p => p.label).includes(colorLabel)
-        if(isActive) console.log(colorLabel)
           let style = {
             backgroundColor: values[values.length - 1 ],
             transform: isActive ?

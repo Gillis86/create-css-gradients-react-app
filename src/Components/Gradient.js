@@ -7,8 +7,8 @@ import './Gradient.scss';
 class Gradient extends Component {
     
     componentWillMount(){
-        this.props.setPermutations()
-        console.log('[Gradient.js] componentWillMount')
+        /* this.props.setPermutations() */
+       /*  console.log('[Gradient.js] componentWillMount') */
 
         
     }
@@ -25,8 +25,8 @@ class Gradient extends Component {
     }
 
  
-  componentDidUpdate(){
-      console.log('[Gradient.js] component did update')
+  componentDidMount(){
+      console.log('[Gradient.js] component did mount')
             const textArea = this.refs.codeText
             if(textArea){
                 this.refs.codeText.value = this.refs.g__container.style.backgroundImage
@@ -40,7 +40,7 @@ class Gradient extends Component {
     
     render(){
         
-        console.log('[Gradient.js] render start')
+        /* console.log('[Gradient.js] render start') */
        const {colors, mode, radialShape, radialPosX, radialPosY, linearAngle, changeGradientProps} = this.props
 
      
@@ -87,7 +87,7 @@ class Gradient extends Component {
                 </div>
                 
             )
-        console.log(style.backgroundImage)
+        /* console.log(style.backgroundImage) */
         }else{
             style = {
                 backgroundImage: `${mode}-gradient(${radialShape} at 
