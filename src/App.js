@@ -119,7 +119,7 @@ setPermutations(){
 }
 
 shuffle(){
-  console.log('copy in shuffle',copy)
+  /* console.log('copy in shuffle',copy) */
     let value =   this.state.perm_gen.next()
     if( !value.done  ){
       value = this.state.perm_gen.next()

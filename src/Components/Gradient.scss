@@ -116,9 +116,9 @@
             display: flex;
             flex-wrap:wrap;
             padding:2rem;
+            justify-content: flex-start;
             &--item{
-                padding:1rem 4rem;
-                font-weight:bold;
+                
             }
         }
         &--code{

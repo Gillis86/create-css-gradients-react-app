@@ -25,8 +25,8 @@ class Gradient extends Component {
     }
 
  
-  componentDidMount(){
-      console.log('[Gradient.js] component did mount')
+  componentDidUpdate(){
+      console.log('[Gradient.js] component did update')
             const textArea = this.refs.codeText
             if(textArea){
                 this.refs.codeText.value = this.refs.g__container.style.backgroundImage
@@ -34,6 +34,15 @@ class Gradient extends Component {
                                     
                
   }
+  componentDidMount(){
+    console.log('[Gradient.js] component did mount')
+          const textArea = this.refs.codeText
+          if(textArea){
+              this.refs.codeText.value = this.refs.g__container.style.backgroundImage
+                      }
+                                  
+             
+}
                     
 
 
@@ -239,16 +248,26 @@ class Gradient extends Component {
                     <div className="gradient__controls--wrapper">
                     <div className="gradient__controls--colors">
                         {
+                            
                            this.props.colors.map(color=>{
+                               let style;
+                            if (this.props.colors.length>7) {
+                                style = {
+                                    background:color,
+                                    width:'3rem',
+                                    height:'2rem'
+                                }
+                            }else{
+                                style={
+                                    background:color,
+                                    width:'6rem',
+                                    height:'3rem'
+                                }
+                            }
                             return <div
                             key={color} 
-                            style={
-                                {
-                                    background:color,
-                                    color: color
-                                }
-                            } className="gradient__controls--colors--item">
-                                {color}
+                            style={style} className="gradient__controls--colors--item">
+                                
                             </div>
                         })
                         } 
