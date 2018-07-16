@@ -93,12 +93,21 @@ permutation(array) {
   return result
 }
 
+permute =  function*(a, n = a.length) {
+  if (n <= 1) yield a.slice();
+  else for (let i = 0; i < n; i++) {
+    yield permute(a, n - 1);
+    const j = n % 2 ? 0 : i;
+    [a[n-1], a[j]] = [a[j], a[n-1]];
+  }
+}
+
 async setPermutations(){
-  const permutations = await this.permutation(this.state.colors)
-  const perm_gen = this.permutation_gen(permutations.slice(1))
+  //const permutations = await this.permutation(this.state.colors)
+  const perm_gen = this.permute(this.state.colors).bind(this)//this.permutation_gen(permutations.slice(1))
   this.setState({
     perm_gen,
-    colorPermutations: permutations
+    //colorPermutations: permutations
   })
 }
 
@@ -111,7 +120,7 @@ shuffle(){
         })
       
   }else{
-    const perm_gen = this.permutation_gen(this.state.colorPermutations)
+    const perm_gen = this.permute(this.state.colors)     //this.permutation_gen(this.state.colorPermutations)
       this.setState({
         perm_gen,
         colors: perm_gen.next().value
