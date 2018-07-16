@@ -93,8 +93,8 @@ permutation(array) {
   return result
 }
 
-setPermutations(){
-  const permutations = this.permutation(this.state.colors)
+async setPermutations(){
+  const permutations = await this.permutation(this.state.colors)
   const perm_gen = this.permutation_gen(permutations.slice(1))
   this.setState({
     perm_gen,
@@ -173,11 +173,11 @@ removeColor(color){
 }
 
 showResultHandler(){
-  if(this.state.colors.length > 1 && this.state.colors.length <= 7){
+  if(this.state.colors.length > 1 && this.state.colors.length <= 9){
     this.setState({
       showResult: true
     })
-  }else if(this.state.colors.length >= 8){
+  }else if(this.state.colors.length >= 9){
     alert('Try with at most 7 colors for performance reasons')
   }else{
     alert('Combine at least two color')
